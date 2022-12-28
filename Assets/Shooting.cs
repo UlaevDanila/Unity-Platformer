@@ -12,6 +12,7 @@ public class Shooting : MonoBehaviour
     private void Awake()
     {
         _characterTransform= GetComponent<Transform>();
+
     }
 
     private void Update()

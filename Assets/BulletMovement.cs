@@ -6,6 +6,10 @@ public class BulletMovement : MonoBehaviour
 
     [SerializeField] private float _destroyDistance;
 
+    private float _horizontalOffset;
+
+    private float _verticalOffset;
+
     private Vector3 _startPosition;
     private Vector3 _currentPosition;
 
@@ -21,21 +25,23 @@ public class BulletMovement : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+
+        _horizontalOffset = Screen.width / 2;
+
+        _verticalOffset = Screen.height / 2;
     }
 
     private void Update()
     {
         _currentPosition = transform.position;
 
-        _direction.x = Input.mousePosition.x;
-        _direction.y = Input.mousePosition.y;
+        _direction.x = Input.mousePosition.x - _horizontalOffset;
+        _direction.y = Input.mousePosition.y - _verticalOffset;
 
         if(Vector3.Distance(_startPosition, _currentPosition) > _destroyDistance)
         {
             Destroy(gameObject);
         }
-
-        Debug.Log((Input.mousePosition.x, Input.mousePosition.y));
     }
 
 
